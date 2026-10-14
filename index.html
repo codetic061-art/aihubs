@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="en" dir="ltr" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI Hub — Everything AI. One intelligent hub.</title>
+<meta name="description" content="A curated hub for AI courses, concepts, MCP servers, skills and prompt libraries — for developers, engineers and learners.">
+<meta name="color-scheme" content="light dark">
+
+<!-- Fonts: Inter (Latin) + IBM Plex Sans Arabic (Arabic). Only the weights the
+     page actually uses; both loaded with display=swap so text is never blocked. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+
+<!-- Design tokens: single source of truth (assets/design-tokens.css) -->
+<link rel="stylesheet" href="assets/design-tokens.css">
+<link rel="stylesheet" href="assets/landing.css">
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+<symbol id="bot" viewBox="0 0 120 200"><g fill="none" stroke="var(--bot-stroke)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+<rect x="17" y="90" width="15" height="42" rx="7.5" fill="var(--bot-fill)"/><rect x="88" y="90" width="15" height="42" rx="7.5" fill="var(--bot-fill)"/>
+<path d="M18 104h13M89 104h13"/><circle cx="24.5" cy="138" r="8" fill="var(--bot-fill)"/><circle cx="95.5" cy="138" r="8" fill="var(--bot-fill)"/>
+<rect x="41" y="134" width="16" height="38" rx="6" fill="var(--bot-fill)"/><rect x="63" y="134" width="16" height="38" rx="6" fill="var(--bot-fill)"/>
+<path d="M41 152h16M63 152h16"/><rect x="34" y="168" width="26" height="18" rx="9" fill="var(--bot-fill)"/><rect x="60" y="168" width="26" height="18" rx="9" fill="var(--bot-fill)"/>
+<rect x="32" y="84" width="56" height="56" rx="14" fill="var(--bot-fill)"/><rect x="45" y="97" width="30" height="20" rx="3"/>
+<rect x="46" y="76" width="28" height="10" rx="3" fill="var(--bot-visor)" stroke="none"/>
+<circle cx="99" cy="42" r="10" fill="var(--bot-fill)"/><circle cx="99" cy="42" r="4.5"/>
+<rect x="20" y="6" width="78" height="72" rx="32" fill="var(--bot-fill)"/>
+<rect x="29" y="18" width="58" height="40" rx="16" fill="var(--bot-visor)" stroke="none"/>
+<ellipse cx="49" cy="35" rx="4" ry="6" fill="var(--bot-eye)" stroke="none"/><ellipse cx="67" cy="35" rx="4" ry="6" fill="var(--bot-eye)" stroke="none"/>
+<path d="M51 46q7 5 14 0" stroke="var(--bot-eye)" stroke-width="2.4"/></g></symbol>
+<symbol id="books" viewBox="0 0 140 100"><g stroke="var(--illus-stroke)" stroke-width="2" stroke-linejoin="round">
+<rect x="4" y="34" width="14" height="66" rx="2" fill="var(--orange-500)" transform="rotate(-14 11 100)"/>
+<rect x="26" y="16" width="16" height="84" rx="2" fill="var(--cream-50)"/><rect x="42" y="8" width="14" height="92" rx="2" fill="var(--ink-950)"/>
+<rect x="56" y="16" width="15" height="84" rx="2" fill="var(--blue-500)"/><rect x="71" y="12" width="15" height="88" rx="2" fill="var(--cream-50)"/>
+<rect x="92" y="30" width="14" height="70" rx="2" fill="var(--blue-500)" transform="rotate(16 99 100)"/>
+<path d="M26 24h16M71 20h15" stroke-width="1.5"/></g></symbol>
+<symbol id="sk" viewBox="0 0 160 80"><g fill="none" stroke="#0A0A0A" stroke-width="1.5" stroke-linecap="round">
+<rect x="20" y="25" width="28" height="30" rx="3" fill="#FBF8F2"/><path d="M26 34h16M26 40h16M26 46h10"/>
+<path d="M48 40H90M70 40L104 18H140M70 40l34 22h36"/><circle cx="140" cy="18" r="3" fill="#FBF8F2"/><circle cx="140" cy="62" r="3" fill="#FBF8F2"/><circle cx="90" cy="40" r="3" fill="#FBF8F2"/></g></symbol>
+<symbol id="ic" viewBox="0 0 16 16"><rect x="2" y="3" width="12" height="10" rx="1.5"/><path d="M8 3v10M4.5 6h2M4.5 8.5h2M9.5 6h2"/></symbol>
+<marker id="ah" viewBox="0 0 6 6" refX="6" refY="3" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L6 3L0 6" fill="none" stroke="var(--color-line)"/></marker>
+</defs></svg>
+
+<header class="wrap hdr">
+  <div class="logo"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="10" cy="10" r="8"/><path d="M5 7c4 0 6 6 10 6M5 13c4 0 6-6 10-6"/></svg><span>AI Hub</span></div>
+  <nav class="nav" aria-label="Primary" id="nav"></nav>
+  <div class="acts">
+    <div class="search" data-guide="search" tabindex="0" role="search" id="search"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="7" cy="7" r="5"/><path d="m11 11 3 3"/></svg><span id="search-label"></span></div>
+    <button class="btn sm outline" id="guide-help" data-guide="guide-help"></button>
+    <button class="btn sm ink" id="signup" data-guide="sign-up"></button>
+    <button class="btn sm outline icon-btn" id="lang-toggle" data-guide="lang" aria-label="Switch language" title="Switch language">ع</button>
+    <button class="btn sm outline icon-btn" id="theme-toggle" data-guide="theme" aria-label="Toggle theme" title="Toggle theme">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" class="icon-sun"><circle cx="8" cy="8" r="3.2"/><path d="M8 1v2M8 13v2M1 8h2M13 8h2M3.1 3.1l1.4 1.4M11.5 11.5l1.4 1.4M12.9 3.1l-1.4 1.4M4.5 11.5l-1.4 1.4"/></svg>
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" class="icon-moon"><path d="M13.5 9.5A6 6 0 0 1 6.5 2.5a6 6 0 1 0 7 7Z"/></svg>
+    </button>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ============================ HERO ============================ -->
+<section class="wrap hero-sec">
+  <div class="hero">
+    <div class="hero-copy">
+      <h1 class="display" id="hero-title"></h1>
+      <p class="lede" id="hero-lede"></p>
+      <div class="btns">
+        <button class="btn primary" id="btn-search" data-guide="hero-search"></button>
+        <button class="btn ink" id="btn-browse" data-guide="hero-browse"></button>
+      </div>
+      <!-- Counts come from the real content index; they are not marketing claims. -->
+      <div class="hero-sub" id="hero-sub"></div>
+    </div>
+
+    <div class="hero-figures">
+      <!-- Fixed-size editor window. Content scrolls inside a fixed viewport;
+           the window never grows, zooms or shifts the layout. -->
+      <div class="code-win" id="code-panel" data-guide="code-panel" tabindex="0"
+           role="region" aria-labelledby="code-panel-title">
+        <div class="cw-chrome">
+          <span class="cw-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span class="cw-file" id="cp-file"></span>
+          <span class="cw-tabs" aria-hidden="true"></span>
+        </div>
+        <div class="cw-body">
+          <pre class="cw-scroll" id="cp-body" aria-live="off"><code id="cp-code"></code><span class="cw-cursor" id="cp-cursor" aria-hidden="true"></span></pre>
+        </div>
+        <div class="cw-foot">
+          <span id="cp-lines">01</span>
+          <span class="cw-lang" id="cp-lang"></span>
+        </div>
+      </div>
+
+      <!-- Large full-body V2 mascot: the main landing-page character, on the
+           RIGHT on desktop. Artwork is the original V2 SVG, inlined verbatim
+           from assets/v2-mascot.svg (see assets/v2-mascot.js for the rig). -->
+      <div class="v2-stage" id="v2-stage" data-guide="journey">
+        <div class="v2-trigger" id="v2-trigger" tabindex="0" role="button"
+             aria-describedby="v2-hint" aria-label="AI Hub guide robot">
+<!--V2-RIG:START-->
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="-35 65 966 1070" role="img" aria-labelledby="mascot-title" fill="none">
+  <title id="mascot-title">AI Hub robot, reconstructed from the supplied PNG</title>
+  <defs>
+    <linearGradient id="shell" x1="260" y1="300" x2="590" y2="780" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fff"/><stop offset=".57" stop-color="#fdfefe"/><stop offset="1" stop-color="#f1f4f5"/>
+    </linearGradient>
+    <linearGradient id="visor" x1="350" y1="230" x2="554" y2="439" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#111314"/><stop offset="1" stop-color="#17191a"/>
+    </linearGradient>
+    <linearGradient id="joint" x1="345" y1="476" x2="495" y2="549" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#101213"/><stop offset="1" stop-color="#252829"/>
+    </linearGradient>
+    <!-- Pupil clips: an eye group is translated+blink-scaled, so the clip lives
+         in the eyeball's own local space (rx 20, ry 24) and travels with it.
+         The pupil can therefore never leave the eyeball. -->
+    <clipPath id="eye-clip-left"><ellipse rx="20" ry="24"/></clipPath>
+    <clipPath id="eye-clip-right"><ellipse rx="20" ry="24"/></clipPath>
+  </defs>
+  <g stroke="#080a0a" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Whole-character root: hips, legs, torso and head share jump translation.
+         Legs retain the supplied single-piece shells; compression is not knee articulation. -->
+    <g id="character">
+    <!-- Leg compression is about the hip overlap, never independent leg translation. -->
+    <g id="legs">
+      <g id="leg-left">
+        <path fill="url(#shell)" d="M315 786 C345 819 385 846 425 860 L414 1063 Q371 1075 324 1050 C313 974 308 870 315 786Z"/>
+        <path fill="url(#joint)" d="M315 786 C349 818 386 842 425 853 L424 868 C384 857 344 831 313 802Z"/>
+        <path d="M316 941 Q367 960 418 942"/>
+        <path fill="url(#shell)" d="M322 1027 C343 1016 374 1024 397 1040 Q405 1047 414 1041 L414 1067 Q415 1085 364 1090 C332 1094 307 1091 297 1086 C281 1078 297 1045 322 1027Z"/>
+      </g>
+      <g id="leg-right" transform="translate(896 0) scale(-1 1)">
+        <path fill="url(#shell)" d="M315 786 C345 819 385 846 425 860 L414 1063 Q371 1075 324 1050 C313 974 308 870 315 786Z"/>
+        <path fill="url(#joint)" d="M315 786 C349 818 386 842 425 853 L424 868 C384 857 344 831 313 802Z"/>
+        <path d="M316 941 Q367 960 418 942"/>
+        <path fill="url(#shell)" d="M322 1027 C343 1016 374 1024 397 1040 Q405 1047 414 1041 L414 1067 Q415 1085 364 1090 C332 1094 307 1091 297 1086 C281 1078 297 1045 322 1027Z"/>
+      </g>
+    </g>
+    <g id="upper-body">
+      <!-- Both arms use the same LOCAL coordinates. The right socket alone is mirrored.
+           +shoulder moves outward/up on either side; never negate it again.
+           Shoulder (300,530), elbow seam midpoint (255,688), wrist (239,790). -->
+      <g id="torso">
+        <path fill="url(#shell)" d="M315 516 Q342 501 365 494 L531 494 Q558 501 581 516 C567 554 568 582 578 621 C590 675 601 737 587 769 C577 796 516 839 475 861 Q448 873 421 861 C380 839 319 796 309 769 C295 737 306 675 318 621 C328 582 329 554 315 516Z"/>
+        <path fill="url(#visor)" d="M381 581 Q447 572 515 581 Q525 582 527 593 Q532 638 527 683 Q526 693 517 695 Q448 704 379 695 Q370 694 369 683 Q364 638 369 593 Q370 583 381 581Z"/>
+      </g>\n      <g id="shoulder-left">
+        <path id="sleeve-shoulder-left" fill="url(#joint)" stroke-width="3"/>
+        <g id="arm-left">\n        <path id="sleeve-elbow-left" fill="url(#joint)" stroke-width="3"/>
+        <path fill="url(#shell)" d="M292 531 C263 569 236 617 220 676 Q252 674 290 700 L318 621 C316 584 311 551 300 532Z"/>
+        
+        <g id="forearm-left">\n        <path id="sleeve-wrist-left" fill="url(#joint)" stroke-width="3"/>
+          <path fill="url(#shell)" d="M220 676 C210 710 205 749 207 790 Q239 777 272 791 L290 700 Q250 670 220 676Z"/>
+          
+          <g id="hand-left">
+            <path class="hand-rest" fill="url(#shell)" d="M207 790 C202 825 210 854 229 870 C241 882 253 886 257 878 C262 869 251 861 248 849 C244 839 247 825 252 827 C258 829 258 843 267 848 C279 855 284 844 280 829 L272 791 Q238 776 207 790Z"/>
+            <g class="hand-open" opacity="0" transform="translate(239 790)" fill="url(#shell)" stroke-width="4">
+              <g data-finger="little"><rect x="-28" y="34" width="12" height="40" rx="6"/></g>
+              <g data-finger="ring"><rect x="-15" y="36" width="12" height="50" rx="6"/></g>
+              <g data-finger="middle"><rect x="-2" y="36" width="12" height="55" rx="6"/></g>
+              <g data-finger="index"><rect x="11" y="34" width="12" height="50" rx="6"/></g>
+              <g data-finger="thumb"><path d="M22 17 Q30 13 33 22 L42 45 Q44 53 37 55 Q31 57 28 49 L18 34Z"/></g>
+              <path d="M-28 0 Q0-8 27 0 L26 38 Q22 54 0 54 Q-21 53-27 36Z"/>
+            </g>
+          </g>
+        </g>
+      </g>
+      </g><!-- shoulder-left -->
+      <g transform="translate(896 0) scale(-1 1)">
+        <g id="shoulder-right">
+        <path id="sleeve-shoulder-right" fill="url(#joint)" stroke-width="3"/>
+        <g id="arm-right">\n        <path id="sleeve-elbow-right" fill="url(#joint)" stroke-width="3"/>
+          <path fill="url(#shell)" d="M292 531 C263 569 236 617 220 676 Q252 674 290 700 L318 621 C316 584 311 551 300 532Z"/>
+          
+        <g id="forearm-right">\n        <path id="sleeve-wrist-right" fill="url(#joint)" stroke-width="3"/>
+            <path fill="url(#shell)" d="M220 676 C210 710 205 749 207 790 Q239 777 272 791 L290 700 Q250 670 220 676Z"/>
+            
+          <g id="hand-right">
+              <path class="hand-rest" fill="url(#shell)" d="M207 790 C202 825 210 854 229 870 C241 882 253 886 257 878 C262 869 251 861 248 849 C244 839 247 825 252 827 C258 829 258 843 267 848 C279 855 284 844 280 829 L272 791 Q238 776 207 790Z"/>
+              <g class="hand-open" opacity="0" transform="translate(239 790)" fill="url(#shell)" stroke-width="4">
+                <g data-finger="little"><rect x="-28" y="34" width="12" height="40" rx="6"/></g>
+                <g data-finger="ring"><rect x="-15" y="36" width="12" height="50" rx="6"/></g>
+                <g data-finger="middle"><rect x="-2" y="36" width="12" height="55" rx="6"/></g>
+                <g data-finger="index"><rect x="11" y="34" width="12" height="50" rx="6"/></g>
+                <g data-finger="thumb"><path d="M22 17 Q30 13 33 22 L42 45 Q44 53 37 55 Q31 57 28 49 L18 34Z"/></g>
+                <path d="M-28 0 Q0-8 27 0 L26 38 Q22 54 0 54 Q-21 53-27 36Z"/>
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+      </g><!-- shoulder-right mirror -->
+
+      <path id="neck" fill="url(#joint)" d="M364 471 L359 493 C355 516 390 531 448 532 C506 531 541 516 537 493 L532 471Z"/>
+      <!-- Helmet + visor + eyes are a separate head rig pivoting at the neck. -->
+      <g id="head">
+        <g id="ears" fill="url(#shell)">
+          <path d="M260 252 C232 251 224 269 224 310 C224 350 232 374 260 373Z"/>
+          <path d="M636 252 C664 251 672 269 672 310 C672 350 664 374 636 373Z"/>
+        </g>
+        <path id="helmet" fill="url(#shell)" d="M448 110 C561 109 632 182 645 259 C664 361 626 450 542 480 C485 501 413 501 357 480 C273 450 235 361 254 259 C267 182 335 109 448 110Z"/>
+        <path id="face-visor" fill="url(#visor)" d="M315 226 C356 201 541 201 581 225 C610 243 612 274 612 317 C614 366 609 398 591 414 C552 441 357 442 308 417 C285 404 284 367 284 318 C283 273 287 244 315 226Z"/>
+        <g id="eye-left" transform="translate(372.5 330)">
+          <ellipse rx="20" ry="24" fill="#fff" stroke="none"/>
+          <g clip-path="url(#eye-clip-left)">
+            <g id="pupil-left">
+              <circle r="7.5" fill="#0b0d0e" stroke="none"/>
+              <circle cx="-2.4" cy="-3.1" r="2.1" fill="#fff" stroke="none"/>
+            </g>
+          </g>
+        </g>
+        <g id="eye-right" transform="translate(523 330)">
+          <ellipse rx="20" ry="24" fill="#fff" stroke="none"/>
+          <g clip-path="url(#eye-clip-right)">
+            <g id="pupil-right">
+              <circle r="7.5" fill="#0b0d0e" stroke="none"/>
+              <circle cx="-2.4" cy="-3.1" r="2.1" fill="#fff" stroke="none"/>
+            </g>
+          </g>
+        </g>
+        <g id="eyebrows" stroke="#fff" stroke-width="5" fill="none" opacity="0">
+          <path id="brow-left" d="M352 289 Q372 284 393 289"/>
+          <path id="brow-right" d="M503 289 Q523 284 544 289"/>
+        </g>
+        <!-- The original mouth mark is extended into expressive, audio-driven screen shapes. -->
+        <path id="mouth-mark" fill="#fff" stroke="none" d="M402 378 Q448 376 494 378 Q448 381 402 378Z"/>
+      </g>
+    </g>
+    </g><!-- character -->
+  </g>
+</svg>
+<!--V2-RIG:END-->
+        </div>
+        <div class="ground" aria-hidden="true"></div>
+        <p id="v2-hint" class="sr-only">The robot reacts to your pointer and to the buttons below.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== WHAT IS AI HUB? ===================== -->
+<section class="wrap sec">
+  <div class="what-grid">
+    <div class="what-copy">
+      <p class="s-eyebrow" id="what-eyebrow"></p>
+      <h2 class="s-h" id="what-heading"></h2>
+      <div id="what-body"></div>
+    </div>
+    <div class="facts" id="what-facts" aria-label="Platform contents"></div>
+  </div>
+</section>
+
+<!-- ===================== PLATFORM AREAS ===================== -->
+<section class="wrap sec">
+  <div class="s-head">
+    <p class="s-eyebrow" id="areas-eyebrow"></p>
+    <h2 class="s-h" id="areas-heading"></h2>
+    <p class="s-lede" id="areas-lede"></p>
+  </div>
+  <div class="areas" id="areas"></div>
+</section>
+
+<!-- ===================== TOOLS AND RESOURCES ===================== -->
+<section class="wrap sec">
+  <div class="s-head">
+    <p class="s-eyebrow" id="res-eyebrow"></p>
+    <h2 class="s-h" id="res-heading"></h2>
+    <p class="s-lede" id="res-lede"></p>
+  </div>
+  <div class="res" id="res"></div>
+</section>
+
+<!-- ===================== HOW IT WORKS ===================== -->
+<section class="wrap sec">
+  <div class="s-head">
+    <p class="s-eyebrow" id="how-eyebrow"></p>
+    <h2 class="s-h" id="how-heading"></h2>
+    <p class="s-lede" id="how-lede"></p>
+  </div>
+  <div class="steps" id="steps"></div>
+</section>
+
+<!-- ===================== FINAL CTA ===================== -->
+<section class="wrap sec">
+  <div class="cta">
+    <div class="cta-copy">
+      <h2 class="s-h" id="cta-heading"></h2>
+      <p id="cta-body"></p>
+    </div>
+    <div class="cta-acts">
+      <button class="btn primary" id="btn-browse-2" data-guide="hero-browse"></button>
+      <button class="btn outline" id="btn-search-2" data-guide="hero-search"></button>
+      <p class="s-lede" style="margin:6px 0 0;font-size:var(--fs-caption)" id="cta-note"></p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============================ FOOTER ============================ -->
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-about">
+        <div class="logo"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="10" cy="10" r="8"/><path d="M5 7c4 0 6 6 10 6M5 13c4 0 6-6 10-6"/></svg><span>AI Hub</span></div>
+        <p id="foot-about"></p>
+      </div>
+      <div class="foot-col"><h3 id="foot-h1"></h3><ul id="foot-c1"></ul></div>
+      <div class="foot-col"><h3 id="foot-h2"></h3><ul id="foot-c2"></ul></div>
+      <div class="foot-col"><h3 id="foot-h3"></h3><ul id="foot-c3"></ul></div>
+      <div class="foot-col"><h3 id="foot-h4"></h3><ul id="foot-c4"></ul></div>
+    </div>
+    <div class="foot-bot">
+      <span id="foot-copy"></span>
+      <div class="fb-links" id="foot-legal"></div>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ SMALL CONTEXTUAL GUIDE (head-only robot) ============
+     Agent Robot Avatar — MIT, (c) 2026 CX ART Lab. Bundled to a single
+     classic script at assets/vendor/agent-robot-avatar.js. The element
+     rests in the bottom-right corner and is moved only on request by
+     assets/guide.js; the component owns its own eye tracking, blinking,
+     head motion, squeeze and antenna drag. -->
+<agent-robot-avatar id="guide" size="54" color="#111110" auto-sleep="0"
+  wake-on="activity" motion="auto" press-squeeze antenna-drag
+  aria-label="AI Hub guide"></agent-robot-avatar>
+
+<div class="guide-bubble" id="guide-bubble" role="status" aria-live="polite"></div>
+
+<!-- Chat panel — opened by double-clicking the guide, or the Help button. -->
+<div class="guide-chat" id="guide-chat" role="dialog" aria-modal="false"
+     aria-labelledby="gc-title" hidden>
+  <div class="gc-head">
+    <span class="gc-title" id="gc-title"></span>
+    <button class="gc-close" id="gc-close" aria-label="Close">&#215;</button>
+  </div>
+  <div class="gc-log" id="gc-log"></div>
+  <form class="gc-form" id="gc-form">
+    <input class="gc-input" id="gc-input" type="text" autocomplete="off">
+    <button class="gc-send" type="submit" id="gc-send"></button>
+  </form>
+</div>
+
+<script src="assets/vendor/agent-robot-avatar.js"></script>
+<script src="assets/vendor/prism.js"></script>
+<script src="assets/vendor/prism-python.js"></script>
+<script src="assets/vendor/prism-javascript.js"></script>
+<script src="assets/vendor/prism-json.js"></script>
+<script src="assets/vendor/prism-bash.js"></script>
+<script src="assets/catalog.js"></script>
+<script src="assets/content.js"></script>
+<script src="assets/v2-mascot.js"></script>
+<script src="assets/landing.js"></script>
+<script src="assets/guide.js"></script>
+</body>
+</html>

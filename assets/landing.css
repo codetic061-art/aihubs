@@ -1,0 +1,430 @@
+/* =====================================================================
+   AI HUB — LANDING PAGE STYLES
+   Design tokens live in assets/design-tokens.css (single source of truth).
+   This file holds layout + component rules only. No colour literals here
+   except where the reference page itself hard-coded them.
+   Additive: the original reference page is untouched.
+   ===================================================================== */
+
+*{box-sizing:border-box;margin:0}
+html{-webkit-text-size-adjust:100%}
+body{font-family:var(--font-sans);background:var(--color-bg);color:var(--color-text-primary);
+  transition:background-color var(--dur-2),color var(--dur-2);overflow-x:hidden}
+html[dir="rtl"] body{font-family:"IBM Plex Sans Arabic",var(--font-sans)}
+html[dir="rtl"] .display,html[dir="rtl"] .h2,html[dir="rtl"] .h3,
+html[dir="rtl"] .s-h,html[dir="rtl"] .code-win .cw-file{font-family:"IBM Plex Sans Arabic",var(--font-display)}
+
+.wrap{max-width:calc(var(--container-max) + 2 * var(--gutter));margin:0 auto;padding-inline:var(--gutter)}
+.nw{white-space:nowrap}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;
+  clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.skip{position:absolute;inset-inline-start:8px;top:-48px;z-index:200;background:var(--color-accent);
+  color:var(--color-on-accent);padding:10px 16px;border-radius:var(--radius-md);
+  font-size:var(--fs-small);font-weight:500;text-decoration:none;transition:top var(--dur-2)}
+.skip:focus{top:8px}
+
+/* ------------------------------- HEADER ------------------------------- */
+.hdr{height:var(--header-h);display:flex;align-items:center;gap:var(--space-8)}
+.logo{display:flex;align-items:center;gap:8px;font-weight:600;font-size:18px;letter-spacing:-.01em}
+.nav{display:flex;gap:28px;margin-inline-start:12%;font-size:var(--fs-nav);font-weight:500}
+.nav a{color:inherit;text-decoration:none}
+.nav a:hover,.nav a:focus-visible{text-decoration:underline;text-underline-offset:4px}
+.acts{margin-inline-start:auto;display:flex;gap:12px;align-items:center}
+.search{height:var(--input-h);width:var(--input-w);border:1.5px solid color-mix(in srgb,var(--color-border) 55%,transparent);
+  border-radius:var(--radius-md);display:flex;align-items:center;gap:8px;padding:0 12px;
+  color:var(--color-text-tertiary);font-size:var(--fs-small);cursor:pointer}
+.search:hover{border-color:var(--color-border)}
+.search:focus-visible{outline:none;box-shadow:var(--focus-ring)}
+.icon-btn{width:var(--icon-btn);height:var(--icon-btn);padding:0;justify-content:center;
+  font-weight:600;font-size:var(--fs-small);flex:none}
+.icon-btn .icon-moon{display:none}
+[data-theme="dark"] .icon-btn .icon-sun{display:none}
+[data-theme="dark"] .icon-btn .icon-moon{display:block}
+
+.btn{height:var(--btn-h);padding:0 var(--btn-px);border-radius:var(--radius-md);
+  font:500 var(--fs-button)/1 var(--font-sans);border:none;cursor:pointer;display:inline-flex;
+  align-items:center;gap:6px;transition:background-color var(--dur-1),border-color var(--dur-1)}
+html[dir="rtl"] .btn{font-family:"IBM Plex Sans Arabic",var(--font-sans)}
+.btn:active{transform:translateY(1px)}
+.btn:focus-visible{outline:none;box-shadow:var(--focus-ring)}
+.btn.sm{height:var(--btn-h-sm);padding:0 var(--btn-px-sm)}
+.btn.primary{background:var(--color-accent);color:var(--color-on-accent)}
+.btn.primary:hover{background:var(--color-accent-hover)}
+.btn.ink{background:var(--color-ink-fill);color:var(--color-on-ink)}
+.btn.inverse{background:var(--color-inverse-fill);color:var(--color-on-inverse)}
+.btn.outline{background:transparent;color:var(--color-text-primary);
+  box-shadow:inset 0 0 0 1.5px var(--color-border)}
+.btn.outline:hover{background:var(--color-bg-secondary)}
+
+/* -------------------------------- HERO -------------------------------- */
+.hero-sec{padding-top:var(--hero-pad-top)}
+/* Copy first, code window second, large mascot on the RIGHT on desktop.
+   The mascot is its own grid cell so it can never overlap or sit inside
+   the code window. */
+/* Right column: code window, then the large mascot beside it.
+   The window gets the larger share of a WIDER right column, and the
+   mascot is sized from its own clamp, so the window always keeps enough
+   width to read real code and the two can never squeeze each other. */
+.hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.28fr);align-items:center;
+  gap:var(--grid-gap)}
+.hero-copy{min-width:0;container-type:inline-size}
+.display{font-family:var(--font-display);font-weight:600;font-size:var(--fs-display);
+  line-height:var(--lh-display);letter-spacing:var(--ls-display)}
+/* The headline lines are unbroken only while the COPY COLUMN is wide enough
+   to hold them. Measuring the column (not the viewport) is what keeps the
+   hero correct when the mascot and the code window take part of the row. */
+@container (max-width:560px){
+  .nw{white-space:normal}
+}
+.lede{font-size:var(--fs-lede);line-height:var(--lh-lede);max-width:46ch;margin:16px 0 28px}
+.btns{display:flex;gap:12px;flex-wrap:wrap}
+.hero-sub{display:flex;gap:22px;flex-wrap:wrap;margin-top:26px;
+  font-size:var(--fs-small);color:var(--color-text-secondary)}
+.hero-sub b{display:block;font-family:var(--font-display);font-size:19px;
+  font-weight:600;color:var(--color-text-primary);letter-spacing:-.01em}
+.hero-figures{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;
+  gap:var(--space-5);min-width:0}
+
+/* --------------------- LARGE V2 MASCOT (right side) ------------------- */
+.v2-stage{position:relative;flex:0 0 auto;width:clamp(140px,13vw,180px);
+  height:var(--v2-h);display:flex;align-items:flex-end;justify-content:center}
+.v2-trigger{width:100%;height:100%;display:block;border:0;padding:0;background:transparent;
+  cursor:pointer;isolation:isolate;-webkit-tap-highlight-color:transparent}
+.v2-trigger:focus-visible{outline:none;box-shadow:var(--focus-ring);border-radius:var(--radius-lg)}
+.v2-trigger svg{width:100%;height:100%;display:block;overflow:visible}
+.ground{position:absolute;bottom:2%;left:26%;width:48%;height:11px;
+  background:color-mix(in srgb,var(--ink-950) 16%,transparent);filter:blur(5px);
+  border-radius:50%;z-index:-1;pointer-events:none}
+
+/* ================= CODE WINDOW (macOS-style editor) ===================
+   Fixed height at every state. The content scrolls inside a fixed
+   viewport, so the window never grows, never zooms, never shifts the
+   surrounding layout. */
+.code-win{
+  min-width:0;
+  background:var(--color-code-bg);
+  color:var(--color-code-text);
+  border-radius:10px;
+  border:1px solid color-mix(in srgb,var(--ink-950) 45%,transparent);
+  box-shadow:0 1px 0 rgba(255,255,255,.05) inset,
+             0 10px 28px color-mix(in srgb,var(--ink-950) 14%,transparent);
+  display:flex;flex-direction:column;overflow:hidden;
+  height:var(--code-win-h);
+  max-height:var(--code-win-h);
+  contain:paint;
+}
+.code-win:focus-visible{outline:none;box-shadow:var(--focus-ring)}
+
+/* Title bar — clean, restrained, no OS chrome imitation. */
+.cw-chrome{height:38px;flex:none;display:flex;align-items:center;gap:10px;
+  padding:0 12px;border-bottom:1px solid color-mix(in srgb,var(--ink-950) 55%,transparent);
+  background:color-mix(in srgb,var(--color-code-bg) 82%,var(--ink-950))}
+.cw-dots{display:flex;gap:7px;flex:none}
+.cw-dots i{width:11px;height:11px;border-radius:50%;
+  background:color-mix(in srgb,var(--cream-ink) 22%,transparent)}
+.cw-file{font-family:var(--font-mono);font-size:11.5px;letter-spacing:.02em;
+  color:color-mix(in srgb,var(--cream-ink) 70%,transparent);
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+  margin-inline:auto;flex:1 1 auto;text-align:center}
+.cw-tabs{display:flex;gap:6px;flex:none}
+
+/* The fixed-height viewport. Lines are revealed here and the box scrolls. */
+.cw-body{flex:1 1 auto;min-height:0;overflow:hidden;position:relative}
+.cw-scroll{margin:0;padding:14px 16px 20px;font-family:var(--font-mono);
+  font-size:var(--panel-fs);line-height:var(--panel-line-h);white-space:pre;
+  height:100%;overflow-y:auto;overflow-x:auto;scrollbar-width:thin;
+  scroll-behavior:smooth;overscroll-behavior:contain}
+.cw-scroll code{font:inherit;display:block}
+.cw-line{display:block;min-height:1lh}
+.cw-line.is-hidden{visibility:hidden}
+.cw-cursor{display:inline-block;width:var(--panel-cursor-w);height:1em;
+  vertical-align:text-bottom;background:var(--cream-ink);opacity:.9;
+  animation:cp-blink 1.05s steps(1) infinite;margin-inline-start:1px}
+@keyframes cp-blink{0%,49%{opacity:.9}50%,100%{opacity:0}}
+.cw-foot{height:30px;flex:none;display:flex;align-items:center;gap:10px;
+  padding:0 12px;border-top:1px solid color-mix(in srgb,var(--ink-950) 55%,transparent);
+  font-size:10.5px;font-family:var(--font-mono);
+  color:color-mix(in srgb,var(--cream-ink) 52%,transparent)}
+.cw-lang{margin-inline-start:auto;text-transform:uppercase;letter-spacing:.06em}
+
+/* Prism tokens — mapped onto the AI Hub palette (see design-tokens.css §13). */
+.code-win .token.comment,.code-win .token.prolog,.code-win .token.doctype,
+.code-win .token.cdata{color:var(--code-com);font-style:italic}
+.code-win .token.punctuation{color:var(--code-punc)}
+.code-win .token.property,.code-win .token.tag,.code-win .token.constant,
+.code-win .token.symbol,.code-win .token.deleted{color:var(--code-num)}
+.code-win .token.boolean,.code-win .token.number{color:var(--code-num)}
+.code-win .token.selector,.code-win .token.attr-name,.code-win .token.string,
+.code-win .token.char,.code-win .token.builtin,.code-win .token.inserted{color:var(--code-str)}
+.code-win .token.operator,.code-win .token.entity,.code-win .token.url{color:var(--code-op)}
+.code-win .token.atrule,.code-win .token.attr-value,.code-win .token.keyword{color:var(--code-kw);font-weight:500}
+.code-win .token.function,.code-win .token.class-name{color:var(--code-fn)}
+.code-win .token.regex,.code-win .token.important,.code-win .token.variable{color:var(--code-var)}
+
+/* ===================== CONTENT SECTIONS (new) ========================= */
+.s-h{font-family:var(--font-display);font-weight:600;font-size:var(--fs-h2);
+  letter-spacing:var(--ls-h2);line-height:1.2}
+.s-eyebrow{font-size:var(--fs-caption);font-weight:600;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--color-accent-2-shade);margin-bottom:12px}
+.s-lede{font-size:var(--fs-lede);line-height:var(--lh-lede);color:var(--color-text-secondary);
+  max-width:62ch;margin-top:16px}
+.s-head{max-width:70ch;margin-bottom:44px}
+
+/* "What is AI Hub?" — one column of prose + a stat row. */
+.what-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:64px;align-items:start}
+.what-copy p{font-size:var(--fs-small);line-height:1.75;color:var(--color-text-secondary);
+  margin-top:16px;max-width:56ch}
+.what-copy p:first-of-type{margin-top:0}
+.facts{display:grid;grid-template-columns:1fr 1fr;gap:2px;
+  border:1.5px solid var(--color-border);border-radius:var(--radius-lg);overflow:hidden;
+  background:var(--color-border)}
+.fact{background:var(--color-surface);padding:20px 18px}
+.fact b{display:block;font-family:var(--font-display);font-size:28px;font-weight:600;
+  letter-spacing:-.02em;line-height:1;color:var(--color-accent-2-shade);
+  font-variant-numeric:tabular-nums}
+.fact span{display:block;margin-top:8px;font-size:var(--fs-small);
+  color:var(--color-text-secondary);line-height:1.45}
+
+/* Platform areas — six cards in a 3-up grid. */
+.areas{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.area{border:1.5px solid var(--color-border);border-radius:var(--radius-lg);
+  background:var(--color-surface);padding:22px 20px;display:flex;flex-direction:column;
+  transition:transform var(--dur-2) var(--ease-out),border-color var(--dur-1)}
+.area:hover,.area:focus-visible{transform:translateY(-3px);border-color:var(--color-accent)}
+.area:focus-visible{outline:none;box-shadow:var(--focus-ring)}
+.area-num{font-family:var(--font-mono);font-size:var(--fs-caption);
+  color:var(--color-text-tertiary);letter-spacing:.06em}
+.area h3{font-family:var(--font-display);font-size:var(--fs-h3);font-weight:500;
+  letter-spacing:var(--ls-h3);margin:14px 0 10px}
+.area p{font-size:var(--fs-small);line-height:1.6;color:var(--color-text-secondary)}
+.area-count{margin-top:auto;padding-top:16px;font-size:var(--fs-caption);
+  color:var(--color-accent-2-shade);font-weight:500}
+
+/* How it works — numbered steps. */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;counter-reset:st}
+.step{border-top:2px solid var(--color-border);padding-top:18px;position:relative}
+.step::before{counter-increment:st;content:counter(st,decimal-leading-zero);
+  font-family:var(--font-mono);font-size:var(--fs-caption);letter-spacing:.08em;
+  color:var(--color-accent-2-shade);display:block;margin-bottom:12px}
+.step h3{font-family:var(--font-display);font-size:var(--fs-h3);font-weight:500;
+  letter-spacing:var(--ls-h3);margin-bottom:10px}
+.step p{font-size:var(--fs-small);line-height:1.6;color:var(--color-text-secondary)}
+
+/* Resource lists — real catalogue entries. */
+.res{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.res-col{border:1.5px solid var(--color-border);border-radius:var(--radius-lg);
+  background:var(--color-surface);overflow:hidden;display:flex;flex-direction:column}
+.res-head{display:flex;align-items:baseline;justify-content:space-between;gap:10px;
+  padding:16px 18px;border-bottom:1.5px solid var(--color-border);
+  background:var(--color-bg-secondary)}
+.res-head h3{font-family:var(--font-display);font-size:var(--fs-h3);font-weight:500;
+  letter-spacing:var(--ls-h3)}
+.res-n{font-family:var(--font-mono);font-size:var(--fs-caption);
+  color:var(--color-text-tertiary);font-variant-numeric:tabular-nums}
+.res-list{list-style:none;padding:8px 0;flex:1 1 auto}
+.res-list li{padding:11px 18px;border-bottom:1px solid color-mix(in srgb,var(--color-border) 45%,transparent)}
+.res-list li:last-child{border-bottom:0}
+.res-list a{display:block;font-size:var(--fs-small);font-weight:500;color:inherit;
+  text-decoration:none;line-height:1.4}
+.res-list a:hover{color:var(--color-accent)}
+.res-list .rd{display:block;margin-top:5px;font-size:var(--fs-caption);line-height:1.5;
+  color:var(--color-text-secondary);font-weight:400}
+
+/* Placeholder image slot — stable aspect ratio, easy to swap. */
+.img-slot{position:relative;aspect-ratio:16/9;border:1.5px dashed var(--color-border);
+  border-radius:var(--radius-lg);background:var(--color-bg-secondary);
+  display:grid;place-items:center;overflow:hidden;text-align:center;padding:16px}
+.img-slot span{font-size:var(--fs-small);color:var(--color-text-tertiary);line-height:1.5;max-width:34ch}
+
+/* Final CTA */
+.cta{display:grid;grid-template-columns:1.2fr 1fr;gap:56px;align-items:center;
+  border:1.5px solid var(--color-border);border-radius:var(--radius-lg);
+  background:var(--color-surface);padding:48px 44px}
+.cta-copy p{font-size:var(--fs-small);line-height:1.7;color:var(--color-text-secondary);
+  margin-top:16px;max-width:48ch}
+.cta-acts{display:flex;flex-direction:column;gap:12px}
+.cta-acts .btn{justify-content:center}
+
+/* ------------------------------- FOOTER ------------------------------- */
+.foot{background:var(--color-footer-bg);color:var(--color-footer-text);margin-top:0}
+.foot-top{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr 1fr;gap:40px;
+  padding-block:52px}
+.foot-about{display:flex;flex-direction:column;gap:14px}
+.foot-about .logo{color:var(--color-footer-text)}
+.foot-about p{font-size:var(--fs-small);line-height:1.65;
+  color:color-mix(in srgb,var(--color-footer-text) 72%,transparent);max-width:34ch}
+.foot-col h3{font-size:var(--fs-caption);font-weight:600;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--color-footer-text);margin-bottom:16px}
+.foot-col ul{list-style:none;display:flex;flex-direction:column;gap:11px}
+.foot-col a,.foot-col span{font-size:var(--fs-small);line-height:1.4;
+  color:color-mix(in srgb,var(--color-footer-text) 70%,transparent);text-decoration:none}
+.foot-col a:hover,.foot-col a:focus-visible{color:var(--color-footer-text);text-decoration:underline;
+  text-underline-offset:4px}
+.foot-col a:focus-visible{outline:none;box-shadow:var(--focus-ring)}
+.foot-bot{display:flex;align-items:center;gap:16px;flex-wrap:wrap;
+  padding-block:20px;border-top:1px solid color-mix(in srgb,var(--color-footer-text) 22%,transparent);
+  font-size:var(--fs-caption);color:color-mix(in srgb,var(--color-footer-text) 66%,transparent)}
+.foot-bot .fb-links{display:flex;gap:18px;flex-wrap:wrap;margin-inline-start:auto}
+.foot-bot .fb-links a{color:inherit;text-decoration:none}
+.foot-bot .fb-links a:hover{text-decoration:underline;text-underline-offset:4px}
+html[dir="rtl"] .foot-bot .fb-links{margin-inline-start:0;margin-inline-end:auto}
+
+/* =====================================================================
+   SMALL CONTEXTUAL GUIDE — head-only robot + speech bubble + chat panel
+   The robot rests in the BOTTOM-RIGHT corner and never moves on its own.
+   pointer-events are none while parked, so the page stays fully usable.
+   ===================================================================== */
+#guide{
+  position:fixed;
+  left:0;top:0;
+  width:var(--guide-size);height:var(--guide-size);
+  z-index:var(--guide-z);
+  pointer-events:none;              /* moved by JS; clicks pass through */
+  opacity:0;
+  transform:translate3d(var(--gx,-100px),var(--gy,-100px),0);
+  transition:transform var(--guide-dash) var(--guide-dash-ease),
+             opacity var(--dur-3) var(--ease-out);
+  filter:drop-shadow(0 6px 14px color-mix(in srgb,var(--ink-950) 18%,transparent));
+}
+#guide.is-visible{opacity:1}
+/* The resting robot must still be double-clickable (that opens the chat),
+   so it accepts pointer events at rest too. It is small, pinned to the
+   corner, and every click it receives is handled explicitly, so it never
+   swallows a click meant for the page. */
+#guide.is-visible{pointer-events:auto;cursor:pointer}
+#guide.is-active{pointer-events:auto;cursor:pointer}
+/* Reduced motion: no dash, no travel — the guide appears in place. */
+@media (prefers-reduced-motion: reduce){
+  #guide{transition:opacity var(--dur-1) linear}
+}
+
+.guide-bubble{
+  position:fixed;left:0;top:0;z-index:calc(var(--guide-z) + 1);
+  max-width:var(--guide-bubble-w);
+  padding:9px 12px;border-radius:var(--radius-md);
+  background:var(--color-surface-raised);
+  border:var(--stroke-ui) solid var(--color-border);
+  box-shadow:var(--shadow-popover);
+  color:var(--color-text-primary);
+  font-size:var(--fs-small);line-height:1.5;
+  transform:translate3d(var(--bx,-100px),var(--by,-100px),0) scale(.94);
+  opacity:0;pointer-events:none;
+  transition:transform var(--guide-dash) var(--guide-dash-ease),
+             opacity var(--dur-2) var(--ease-out);
+}
+.guide-bubble.is-visible{opacity:1;transform:translate3d(var(--bx),var(--by),0) scale(1)}
+/* Bubble tail — points back at the guide. */
+.guide-bubble::after{content:"";position:absolute;bottom:-7px;
+  inset-inline-start:18px;width:12px;height:12px;background:var(--color-surface-raised);
+  border-inline-end:var(--stroke-ui) solid var(--color-border);
+  border-block-end:var(--stroke-ui) solid var(--color-border);
+  transform:rotate(45deg)}
+html[dir="rtl"] .guide-bubble::after{inset-inline-start:auto;inset-inline-end:18px}
+@media (prefers-reduced-motion: reduce){
+  .guide-bubble{transition:opacity var(--dur-1) linear}
+}
+
+/* Chat panel — opens in place, anchored above the resting robot. */
+.guide-chat{
+  position:fixed;left:0;top:0;z-index:calc(var(--guide-z) + 2);
+  width:var(--guide-chat-w);
+  background:var(--color-surface-raised);
+  border:var(--stroke-ui) solid var(--color-border);
+  border-radius:var(--radius-lg);
+  box-shadow:var(--shadow-popover);
+  display:flex;flex-direction:column;overflow:hidden;
+  opacity:0;pointer-events:none;
+  transform:translate3d(var(--bx,-100px),var(--by,-100px),0) scale(.96);
+  transform-origin:bottom right;
+  transition:opacity var(--dur-2) var(--ease-out),
+             transform var(--dur-2) var(--ease-out);
+}
+html[dir="rtl"] .guide-chat{transform-origin:bottom left}
+.guide-chat.is-open{opacity:1;pointer-events:auto;
+  transform:translate3d(var(--bx),var(--by),0) scale(1)}
+.gc-head{display:flex;align-items:center;gap:10px;padding:12px 14px;
+  border-bottom:var(--stroke-ui) solid var(--color-border);flex:none}
+.gc-title{font-weight:600;font-size:var(--fs-small);flex:1 1 auto}
+.gc-close{width:26px;height:26px;border:0;border-radius:var(--radius-sm);
+  background:transparent;color:var(--color-text-tertiary);cursor:pointer;
+  font-size:16px;line-height:1;display:grid;place-items:center;flex:none}
+.gc-close:hover{background:var(--color-bg-secondary);color:var(--color-text-primary)}
+.gc-close:focus-visible{outline:none;box-shadow:var(--focus-ring)}
+.gc-log{padding:14px;display:flex;flex-direction:column;gap:10px;
+  overflow-y:auto;max-height:190px;flex:1 1 auto}
+.gc-msg{font-size:var(--fs-small);line-height:1.55;padding:9px 12px;
+  border-radius:var(--radius-md);background:var(--color-bg-secondary);
+  color:var(--color-text-primary);max-width:88%}
+.gc-msg.gc-muted{background:transparent;padding:0;font-size:var(--fs-caption);
+  color:var(--color-text-tertiary);max-width:100%}
+.gc-msg.gc-me{margin-inline-start:auto;background:var(--color-accent);
+  color:var(--color-on-accent)}
+.gc-form{display:flex;gap:8px;padding:12px;border-top:var(--stroke-ui) solid var(--color-border);flex:none}
+.gc-input{flex:1 1 auto;min-width:0;height:var(--input-h);padding:0 12px;
+  border:1.5px solid var(--color-border);border-radius:var(--radius-md);
+  background:var(--color-bg);color:var(--color-text-primary);
+  font:400 var(--fs-small)/1 var(--font-sans)}
+.gc-input:focus-visible{outline:none;box-shadow:var(--focus-ring)}
+.gc-send{flex:none;height:var(--input-h);padding:0 14px;border:0;border-radius:var(--radius-md);
+  background:var(--color-accent);color:var(--color-on-accent);cursor:pointer;
+  font:500 var(--fs-small)/1 var(--font-sans)}
+.gc-send:hover{background:var(--color-accent-hover)}
+.gc-send:focus-visible{outline:none;box-shadow:var(--focus-ring)}
+@media (prefers-reduced-motion: reduce){
+  .guide-chat{transition:opacity var(--dur-1) linear}
+}
+
+/* =====================================================================
+   RESPONSIVE
+   ===================================================================== */
+@media (max-width:1200px){
+  /* Below this the header cannot hold the search field plus four buttons
+     without pushing past the viewport. Drop the search first, then the
+     help button, so the language/theme controls always survive. */
+  .search{display:none}
+}
+@media (max-width:900px){
+  #guide-help{display:none}
+}
+@media (max-width:1080px){
+  .hero{grid-template-columns:1fr;align-items:start;gap:var(--space-8)}
+  .hero-figures{grid-template-columns:1fr;justify-items:stretch}
+  .nav{display:none}
+  .what-grid{grid-template-columns:1fr;gap:36px}
+  .res{grid-template-columns:1fr 1fr}
+  .cta{grid-template-columns:1fr;gap:32px;padding:36px 30px}
+  .foot-top{grid-template-columns:1fr 1fr 1fr;gap:32px}
+  .foot-about{grid-column:1/-1}
+}
+@media (max-width:860px){
+  .areas{grid-template-columns:1fr 1fr}
+  .steps{grid-template-columns:1fr 1fr;gap:32px 20px}
+  .res{grid-template-columns:1fr}
+}
+@media (max-width:720px){
+  :root{--guide-size:var(--guide-size-sm)}
+  /* Stacked: the large mascot leads, then the code window. Reorganised
+     naturally rather than squeezed side by side. */
+  .hero-figures{display:flex;flex-direction:column;align-items:stretch;gap:var(--space-5)}
+  .v2-stage{width:100%;max-width:260px;margin:0 auto;order:-1;height:clamp(180px,48vw,260px)}
+  .code-win{width:100%;height:clamp(280px,62vh,380px);max-height:none;order:1}
+  .facts{grid-template-columns:1fr 1fr}
+}
+@media (max-width:560px){
+  .areas{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr}
+  .facts{grid-template-columns:1fr}
+  .foot-top{grid-template-columns:1fr 1fr;gap:26px;padding-block:36px}
+  .foot-about{grid-column:1/-1}
+  .acts{gap:8px}
+  .s-head{margin-bottom:32px}
+  .cta{padding:28px 20px}
+  .hero-sub{gap:18px}
+}
+
+/* A single global reduced-motion guard, in addition to the per-component ones. */
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;
+    transition-duration:.01ms !important;scroll-behavior:auto !important}
+  .rcard:hover,.ccard:hover,.area:hover{transform:none}
+}

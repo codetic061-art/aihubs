@@ -1,0 +1,129 @@
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="-35 65 966 1070" role="img" aria-labelledby="mascot-title" fill="none">
+  <title id="mascot-title">AI Hub robot, reconstructed from the supplied PNG</title>
+  <defs>
+    <linearGradient id="shell" x1="260" y1="300" x2="590" y2="780" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fff"/><stop offset=".57" stop-color="#fdfefe"/><stop offset="1" stop-color="#f1f4f5"/>
+    </linearGradient>
+    <linearGradient id="visor" x1="350" y1="230" x2="554" y2="439" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#111314"/><stop offset="1" stop-color="#17191a"/>
+    </linearGradient>
+    <linearGradient id="joint" x1="345" y1="476" x2="495" y2="549" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#101213"/><stop offset="1" stop-color="#252829"/>
+    </linearGradient>
+    <!-- Pupil clips: an eye group is translated+blink-scaled, so the clip lives
+         in the eyeball's own local space (rx 20, ry 24) and travels with it.
+         The pupil can therefore never leave the eyeball. -->
+    <clipPath id="eye-clip-left"><ellipse rx="20" ry="24"/></clipPath>
+    <clipPath id="eye-clip-right"><ellipse rx="20" ry="24"/></clipPath>
+  </defs>
+  <g stroke="#080a0a" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Whole-character root: hips, legs, torso and head share jump translation.
+         Legs retain the supplied single-piece shells; compression is not knee articulation. -->
+    <g id="character">
+    <!-- Leg compression is about the hip overlap, never independent leg translation. -->
+    <g id="legs">
+      <g id="leg-left">
+        <path fill="url(#shell)" d="M315 786 C345 819 385 846 425 860 L414 1063 Q371 1075 324 1050 C313 974 308 870 315 786Z"/>
+        <path fill="url(#joint)" d="M315 786 C349 818 386 842 425 853 L424 868 C384 857 344 831 313 802Z"/>
+        <path d="M316 941 Q367 960 418 942"/>
+        <path fill="url(#shell)" d="M322 1027 C343 1016 374 1024 397 1040 Q405 1047 414 1041 L414 1067 Q415 1085 364 1090 C332 1094 307 1091 297 1086 C281 1078 297 1045 322 1027Z"/>
+      </g>
+      <g id="leg-right" transform="translate(896 0) scale(-1 1)">
+        <path fill="url(#shell)" d="M315 786 C345 819 385 846 425 860 L414 1063 Q371 1075 324 1050 C313 974 308 870 315 786Z"/>
+        <path fill="url(#joint)" d="M315 786 C349 818 386 842 425 853 L424 868 C384 857 344 831 313 802Z"/>
+        <path d="M316 941 Q367 960 418 942"/>
+        <path fill="url(#shell)" d="M322 1027 C343 1016 374 1024 397 1040 Q405 1047 414 1041 L414 1067 Q415 1085 364 1090 C332 1094 307 1091 297 1086 C281 1078 297 1045 322 1027Z"/>
+      </g>
+    </g>
+    <g id="upper-body">
+      <!-- Both arms use the same LOCAL coordinates. The right socket alone is mirrored.
+           +shoulder moves outward/up on either side; never negate it again.
+           Shoulder (300,530), elbow seam midpoint (255,688), wrist (239,790). -->
+      <g id="torso">
+        <path fill="url(#shell)" d="M315 516 Q342 501 365 494 L531 494 Q558 501 581 516 C567 554 568 582 578 621 C590 675 601 737 587 769 C577 796 516 839 475 861 Q448 873 421 861 C380 839 319 796 309 769 C295 737 306 675 318 621 C328 582 329 554 315 516Z"/>
+        <path fill="url(#visor)" d="M381 581 Q447 572 515 581 Q525 582 527 593 Q532 638 527 683 Q526 693 517 695 Q448 704 379 695 Q370 694 369 683 Q364 638 369 593 Q370 583 381 581Z"/>
+      </g>\n      <g id="shoulder-left">
+        <path id="sleeve-shoulder-left" fill="url(#joint)" stroke-width="3"/>
+        <g id="arm-left">\n        <path id="sleeve-elbow-left" fill="url(#joint)" stroke-width="3"/>
+        <path fill="url(#shell)" d="M292 531 C263 569 236 617 220 676 Q252 674 290 700 L318 621 C316 584 311 551 300 532Z"/>
+        
+        <g id="forearm-left">\n        <path id="sleeve-wrist-left" fill="url(#joint)" stroke-width="3"/>
+          <path fill="url(#shell)" d="M220 676 C210 710 205 749 207 790 Q239 777 272 791 L290 700 Q250 670 220 676Z"/>
+          
+          <g id="hand-left">
+            <path class="hand-rest" fill="url(#shell)" d="M207 790 C202 825 210 854 229 870 C241 882 253 886 257 878 C262 869 251 861 248 849 C244 839 247 825 252 827 C258 829 258 843 267 848 C279 855 284 844 280 829 L272 791 Q238 776 207 790Z"/>
+            <g class="hand-open" opacity="0" transform="translate(239 790)" fill="url(#shell)" stroke-width="4">
+              <g data-finger="little"><rect x="-28" y="34" width="12" height="40" rx="6"/></g>
+              <g data-finger="ring"><rect x="-15" y="36" width="12" height="50" rx="6"/></g>
+              <g data-finger="middle"><rect x="-2" y="36" width="12" height="55" rx="6"/></g>
+              <g data-finger="index"><rect x="11" y="34" width="12" height="50" rx="6"/></g>
+              <g data-finger="thumb"><path d="M22 17 Q30 13 33 22 L42 45 Q44 53 37 55 Q31 57 28 49 L18 34Z"/></g>
+              <path d="M-28 0 Q0-8 27 0 L26 38 Q22 54 0 54 Q-21 53-27 36Z"/>
+            </g>
+          </g>
+        </g>
+      </g>
+      </g><!-- shoulder-left -->
+      <g transform="translate(896 0) scale(-1 1)">
+        <g id="shoulder-right">
+        <path id="sleeve-shoulder-right" fill="url(#joint)" stroke-width="3"/>
+        <g id="arm-right">\n        <path id="sleeve-elbow-right" fill="url(#joint)" stroke-width="3"/>
+          <path fill="url(#shell)" d="M292 531 C263 569 236 617 220 676 Q252 674 290 700 L318 621 C316 584 311 551 300 532Z"/>
+          
+        <g id="forearm-right">\n        <path id="sleeve-wrist-right" fill="url(#joint)" stroke-width="3"/>
+            <path fill="url(#shell)" d="M220 676 C210 710 205 749 207 790 Q239 777 272 791 L290 700 Q250 670 220 676Z"/>
+            
+          <g id="hand-right">
+              <path class="hand-rest" fill="url(#shell)" d="M207 790 C202 825 210 854 229 870 C241 882 253 886 257 878 C262 869 251 861 248 849 C244 839 247 825 252 827 C258 829 258 843 267 848 C279 855 284 844 280 829 L272 791 Q238 776 207 790Z"/>
+              <g class="hand-open" opacity="0" transform="translate(239 790)" fill="url(#shell)" stroke-width="4">
+                <g data-finger="little"><rect x="-28" y="34" width="12" height="40" rx="6"/></g>
+                <g data-finger="ring"><rect x="-15" y="36" width="12" height="50" rx="6"/></g>
+                <g data-finger="middle"><rect x="-2" y="36" width="12" height="55" rx="6"/></g>
+                <g data-finger="index"><rect x="11" y="34" width="12" height="50" rx="6"/></g>
+                <g data-finger="thumb"><path d="M22 17 Q30 13 33 22 L42 45 Q44 53 37 55 Q31 57 28 49 L18 34Z"/></g>
+                <path d="M-28 0 Q0-8 27 0 L26 38 Q22 54 0 54 Q-21 53-27 36Z"/>
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+      </g><!-- shoulder-right mirror -->
+
+      <path id="neck" fill="url(#joint)" d="M364 471 L359 493 C355 516 390 531 448 532 C506 531 541 516 537 493 L532 471Z"/>
+      <!-- Helmet + visor + eyes are a separate head rig pivoting at the neck. -->
+      <g id="head">
+        <g id="ears" fill="url(#shell)">
+          <path d="M260 252 C232 251 224 269 224 310 C224 350 232 374 260 373Z"/>
+          <path d="M636 252 C664 251 672 269 672 310 C672 350 664 374 636 373Z"/>
+        </g>
+        <path id="helmet" fill="url(#shell)" d="M448 110 C561 109 632 182 645 259 C664 361 626 450 542 480 C485 501 413 501 357 480 C273 450 235 361 254 259 C267 182 335 109 448 110Z"/>
+        <path id="face-visor" fill="url(#visor)" d="M315 226 C356 201 541 201 581 225 C610 243 612 274 612 317 C614 366 609 398 591 414 C552 441 357 442 308 417 C285 404 284 367 284 318 C283 273 287 244 315 226Z"/>
+        <g id="eye-left" transform="translate(372.5 330)">
+          <ellipse rx="20" ry="24" fill="#fff" stroke="none"/>
+          <g clip-path="url(#eye-clip-left)">
+            <g id="pupil-left">
+              <circle r="7.5" fill="#0b0d0e" stroke="none"/>
+              <circle cx="-2.4" cy="-3.1" r="2.1" fill="#fff" stroke="none"/>
+            </g>
+          </g>
+        </g>
+        <g id="eye-right" transform="translate(523 330)">
+          <ellipse rx="20" ry="24" fill="#fff" stroke="none"/>
+          <g clip-path="url(#eye-clip-right)">
+            <g id="pupil-right">
+              <circle r="7.5" fill="#0b0d0e" stroke="none"/>
+              <circle cx="-2.4" cy="-3.1" r="2.1" fill="#fff" stroke="none"/>
+            </g>
+          </g>
+        </g>
+        <g id="eyebrows" stroke="#fff" stroke-width="5" fill="none" opacity="0">
+          <path id="brow-left" d="M352 289 Q372 284 393 289"/>
+          <path id="brow-right" d="M503 289 Q523 284 544 289"/>
+        </g>
+        <!-- The original mouth mark is extended into expressive, audio-driven screen shapes. -->
+        <path id="mouth-mark" fill="#fff" stroke="none" d="M402 378 Q448 376 494 378 Q448 381 402 378Z"/>
+      </g>
+    </g>
+    </g><!-- character -->
+  </g>
+</svg>
